@@ -1,0 +1,2280 @@
+{
+  "formatVersion": 3,
+  "offset": 0,
+  "META": {
+    "RPEVersion": 150,
+    "background": "background.png",
+    "charter": "TouchChart",
+    "composer": "",
+    "id": "touchchart-75012792-f6a6-403d-967c-f75ed99b8c5d",
+    "illustration": "",
+    "level": "IN Lv.1",
+    "name": "Untitled",
+    "offset": 0,
+    "song": "song.mp3"
+  },
+  "BPMList": [
+    {
+      "bpm": 120.0,
+      "startTime": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "chartTime": 0.0,
+  "judgeLineGroup": [
+    "Default"
+  ],
+  "multiLineString": "",
+  "multiScale": 1.0,
+  "judgeLineList": [
+    {
+      "Group": 0,
+      "Name": "Untitled",
+      "Texture": "line.png",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "bpmfactor": 1.0,
+      "father": -1,
+      "isCover": 1,
+      "zOrder": 0,
+      "numOfNotes": 100,
+      "notes": [
+        {
+          "type": 1,
+          "startTime": [
+            0,
+            0,
+            4
+          ],
+          "endTime": [
+            0,
+            0,
+            4
+          ],
+          "positionX": -281.07,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            2,
+            0,
+            4
+          ],
+          "endTime": [
+            3,
+            2,
+            4
+          ],
+          "positionX": -220.87349999999998,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            4,
+            0,
+            4
+          ],
+          "endTime": [
+            4,
+            0,
+            4
+          ],
+          "positionX": -371.93850000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            6,
+            0,
+            4
+          ],
+          "endTime": [
+            6,
+            0,
+            4
+          ],
+          "positionX": 197.54549999999995,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            8,
+            0,
+            4
+          ],
+          "endTime": [
+            8,
+            0,
+            4
+          ],
+          "positionX": -264.9375,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            10,
+            0,
+            4
+          ],
+          "endTime": [
+            10,
+            2,
+            4
+          ],
+          "positionX": -106.63650000000001,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            12,
+            0,
+            4
+          ],
+          "endTime": [
+            12,
+            0,
+            4
+          ],
+          "positionX": -231.13349999999997,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            14,
+            0,
+            4
+          ],
+          "endTime": [
+            14,
+            0,
+            4
+          ],
+          "positionX": -158.328,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            16,
+            0,
+            4
+          ],
+          "endTime": [
+            16,
+            0,
+            4
+          ],
+          "positionX": 170.31600000000006,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            18,
+            0,
+            4
+          ],
+          "endTime": [
+            19,
+            1,
+            4
+          ],
+          "positionX": -140.7375,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            20,
+            0,
+            4
+          ],
+          "endTime": [
+            20,
+            0,
+            4
+          ],
+          "positionX": -288.9405,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            22,
+            0,
+            4
+          ],
+          "endTime": [
+            22,
+            0,
+            4
+          ],
+          "positionX": 270.0135,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            24,
+            0,
+            4
+          ],
+          "endTime": [
+            24,
+            0,
+            4
+          ],
+          "positionX": 370.34549999999996,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            26,
+            0,
+            4
+          ],
+          "endTime": [
+            27,
+            2,
+            4
+          ],
+          "positionX": -251.9235,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            28,
+            0,
+            4
+          ],
+          "endTime": [
+            28,
+            0,
+            4
+          ],
+          "positionX": 109.12049999999994,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            30,
+            0,
+            4
+          ],
+          "endTime": [
+            30,
+            0,
+            4
+          ],
+          "positionX": 401.38200000000006,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            32,
+            0,
+            4
+          ],
+          "endTime": [
+            32,
+            0,
+            4
+          ],
+          "positionX": -80.66250000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            34,
+            0,
+            4
+          ],
+          "endTime": [
+            34,
+            3,
+            4
+          ],
+          "positionX": -224.23500000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            36,
+            0,
+            4
+          ],
+          "endTime": [
+            36,
+            0,
+            4
+          ],
+          "positionX": -167.3325,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            38,
+            0,
+            4
+          ],
+          "endTime": [
+            38,
+            0,
+            4
+          ],
+          "positionX": 3.820499999999999,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            40,
+            0,
+            4
+          ],
+          "endTime": [
+            40,
+            0,
+            4
+          ],
+          "positionX": 34.80300000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            42,
+            0,
+            4
+          ],
+          "endTime": [
+            42,
+            3,
+            4
+          ],
+          "positionX": 216.36450000000002,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            44,
+            0,
+            4
+          ],
+          "endTime": [
+            44,
+            0,
+            4
+          ],
+          "positionX": 21.748499999999943,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            46,
+            0,
+            4
+          ],
+          "endTime": [
+            46,
+            0,
+            4
+          ],
+          "positionX": 263.12850000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            48,
+            0,
+            4
+          ],
+          "endTime": [
+            48,
+            0,
+            4
+          ],
+          "positionX": -20.493000000000038,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            50,
+            0,
+            4
+          ],
+          "endTime": [
+            51,
+            2,
+            4
+          ],
+          "positionX": 99.40049999999997,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            52,
+            0,
+            4
+          ],
+          "endTime": [
+            52,
+            0,
+            4
+          ],
+          "positionX": 356.93999999999994,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            54,
+            0,
+            4
+          ],
+          "endTime": [
+            54,
+            0,
+            4
+          ],
+          "positionX": 126.41399999999993,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            56,
+            0,
+            4
+          ],
+          "endTime": [
+            56,
+            0,
+            4
+          ],
+          "positionX": 142.27649999999997,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            58,
+            0,
+            4
+          ],
+          "endTime": [
+            59,
+            0,
+            4
+          ],
+          "positionX": -303.4395,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            60,
+            0,
+            4
+          ],
+          "endTime": [
+            60,
+            0,
+            4
+          ],
+          "positionX": 214.42050000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            62,
+            0,
+            4
+          ],
+          "endTime": [
+            62,
+            0,
+            4
+          ],
+          "positionX": 157.30199999999994,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            64,
+            0,
+            4
+          ],
+          "endTime": [
+            64,
+            0,
+            4
+          ],
+          "positionX": 380.37600000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            66,
+            0,
+            4
+          ],
+          "endTime": [
+            67,
+            2,
+            4
+          ],
+          "positionX": -245.88900000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            68,
+            0,
+            4
+          ],
+          "endTime": [
+            68,
+            0,
+            4
+          ],
+          "positionX": -38.05649999999999,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            70,
+            0,
+            4
+          ],
+          "endTime": [
+            70,
+            0,
+            4
+          ],
+          "positionX": -312.9975,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            72,
+            0,
+            4
+          ],
+          "endTime": [
+            72,
+            0,
+            4
+          ],
+          "positionX": -378.14849999999996,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            74,
+            0,
+            4
+          ],
+          "endTime": [
+            74,
+            3,
+            4
+          ],
+          "positionX": 40.297500000000056,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            76,
+            0,
+            4
+          ],
+          "endTime": [
+            76,
+            0,
+            4
+          ],
+          "positionX": 19.210499999999954,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            78,
+            0,
+            4
+          ],
+          "endTime": [
+            78,
+            0,
+            4
+          ],
+          "positionX": -301.3605,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            80,
+            0,
+            4
+          ],
+          "endTime": [
+            80,
+            0,
+            4
+          ],
+          "positionX": 384.81750000000005,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            82,
+            0,
+            4
+          ],
+          "endTime": [
+            82,
+            3,
+            4
+          ],
+          "positionX": -257.52599999999995,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            84,
+            0,
+            4
+          ],
+          "endTime": [
+            84,
+            0,
+            4
+          ],
+          "positionX": -389.6505,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            86,
+            0,
+            4
+          ],
+          "endTime": [
+            86,
+            0,
+            4
+          ],
+          "positionX": 60.42600000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            88,
+            0,
+            4
+          ],
+          "endTime": [
+            88,
+            0,
+            4
+          ],
+          "positionX": -315.1035,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            90,
+            0,
+            4
+          ],
+          "endTime": [
+            91,
+            2,
+            4
+          ],
+          "positionX": -379.4715,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            92,
+            0,
+            4
+          ],
+          "endTime": [
+            92,
+            0,
+            4
+          ],
+          "positionX": -364.1085,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            94,
+            0,
+            4
+          ],
+          "endTime": [
+            94,
+            0,
+            4
+          ],
+          "positionX": -38.29950000000001,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            96,
+            0,
+            4
+          ],
+          "endTime": [
+            96,
+            0,
+            4
+          ],
+          "positionX": 176.71500000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            98,
+            0,
+            4
+          ],
+          "endTime": [
+            99,
+            2,
+            4
+          ],
+          "positionX": 299.32200000000006,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            100,
+            0,
+            4
+          ],
+          "endTime": [
+            100,
+            0,
+            4
+          ],
+          "positionX": 389.08349999999996,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            102,
+            0,
+            4
+          ],
+          "endTime": [
+            102,
+            0,
+            4
+          ],
+          "positionX": -122.22900000000001,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            104,
+            0,
+            4
+          ],
+          "endTime": [
+            104,
+            0,
+            4
+          ],
+          "positionX": 247.92749999999998,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            106,
+            0,
+            4
+          ],
+          "endTime": [
+            106,
+            3,
+            4
+          ],
+          "positionX": -216.82349999999997,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            108,
+            0,
+            4
+          ],
+          "endTime": [
+            108,
+            0,
+            4
+          ],
+          "positionX": -73.5075,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            110,
+            0,
+            4
+          ],
+          "endTime": [
+            110,
+            0,
+            4
+          ],
+          "positionX": 200.2995,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            112,
+            0,
+            4
+          ],
+          "endTime": [
+            112,
+            0,
+            4
+          ],
+          "positionX": -223.64099999999996,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            114,
+            0,
+            4
+          ],
+          "endTime": [
+            114,
+            3,
+            4
+          ],
+          "positionX": 404.7165,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            116,
+            0,
+            4
+          ],
+          "endTime": [
+            116,
+            0,
+            4
+          ],
+          "positionX": -43.820999999999984,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            118,
+            0,
+            4
+          ],
+          "endTime": [
+            118,
+            0,
+            4
+          ],
+          "positionX": 221.46750000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            120,
+            0,
+            4
+          ],
+          "endTime": [
+            120,
+            0,
+            4
+          ],
+          "positionX": 38.43449999999999,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            122,
+            0,
+            4
+          ],
+          "endTime": [
+            123,
+            0,
+            4
+          ],
+          "positionX": 78.20550000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            124,
+            0,
+            4
+          ],
+          "endTime": [
+            124,
+            0,
+            4
+          ],
+          "positionX": -241.64999999999998,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            126,
+            0,
+            4
+          ],
+          "endTime": [
+            126,
+            0,
+            4
+          ],
+          "positionX": 317.2095,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            128,
+            0,
+            4
+          ],
+          "endTime": [
+            128,
+            0,
+            4
+          ],
+          "positionX": 317.92500000000007,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            130,
+            0,
+            4
+          ],
+          "endTime": [
+            131,
+            1,
+            4
+          ],
+          "positionX": -198.92249999999999,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            132,
+            0,
+            4
+          ],
+          "endTime": [
+            132,
+            0,
+            4
+          ],
+          "positionX": 130.09949999999995,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            134,
+            0,
+            4
+          ],
+          "endTime": [
+            134,
+            0,
+            4
+          ],
+          "positionX": -53.77049999999997,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            136,
+            0,
+            4
+          ],
+          "endTime": [
+            136,
+            0,
+            4
+          ],
+          "positionX": -77.5575,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            138,
+            0,
+            4
+          ],
+          "endTime": [
+            139,
+            1,
+            4
+          ],
+          "positionX": -392.7285,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            140,
+            0,
+            4
+          ],
+          "endTime": [
+            140,
+            0,
+            4
+          ],
+          "positionX": 4.104000000000058,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            142,
+            0,
+            4
+          ],
+          "endTime": [
+            142,
+            0,
+            4
+          ],
+          "positionX": -244.45800000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            144,
+            0,
+            4
+          ],
+          "endTime": [
+            144,
+            0,
+            4
+          ],
+          "positionX": 130.4505,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            146,
+            0,
+            4
+          ],
+          "endTime": [
+            146,
+            3,
+            4
+          ],
+          "positionX": -272.49749999999995,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            148,
+            0,
+            4
+          ],
+          "endTime": [
+            148,
+            0,
+            4
+          ],
+          "positionX": -64.28699999999999,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            150,
+            0,
+            4
+          ],
+          "endTime": [
+            150,
+            0,
+            4
+          ],
+          "positionX": 260.49600000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            152,
+            0,
+            4
+          ],
+          "endTime": [
+            152,
+            0,
+            4
+          ],
+          "positionX": -302.13,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            154,
+            0,
+            4
+          ],
+          "endTime": [
+            155,
+            2,
+            4
+          ],
+          "positionX": 57.91500000000006,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            156,
+            0,
+            4
+          ],
+          "endTime": [
+            156,
+            0,
+            4
+          ],
+          "positionX": 360.099,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            158,
+            0,
+            4
+          ],
+          "endTime": [
+            158,
+            0,
+            4
+          ],
+          "positionX": -70.07850000000002,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            160,
+            0,
+            4
+          ],
+          "endTime": [
+            160,
+            0,
+            4
+          ],
+          "positionX": 237.12749999999997,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            162,
+            0,
+            4
+          ],
+          "endTime": [
+            163,
+            1,
+            4
+          ],
+          "positionX": 123.99749999999999,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            164,
+            0,
+            4
+          ],
+          "endTime": [
+            164,
+            0,
+            4
+          ],
+          "positionX": 205.95600000000005,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            166,
+            0,
+            4
+          ],
+          "endTime": [
+            166,
+            0,
+            4
+          ],
+          "positionX": -306.80100000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            168,
+            0,
+            4
+          ],
+          "endTime": [
+            168,
+            0,
+            4
+          ],
+          "positionX": 259.25399999999996,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            170,
+            0,
+            4
+          ],
+          "endTime": [
+            170,
+            2,
+            4
+          ],
+          "positionX": -172.62449999999998,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            172,
+            0,
+            4
+          ],
+          "endTime": [
+            172,
+            0,
+            4
+          ],
+          "positionX": 7.951499999999934,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            174,
+            0,
+            4
+          ],
+          "endTime": [
+            174,
+            0,
+            4
+          ],
+          "positionX": 33.42600000000001,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            176,
+            0,
+            4
+          ],
+          "endTime": [
+            176,
+            0,
+            4
+          ],
+          "positionX": 157.31550000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            178,
+            0,
+            4
+          ],
+          "endTime": [
+            179,
+            3,
+            4
+          ],
+          "positionX": 212.71949999999998,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            180,
+            0,
+            4
+          ],
+          "endTime": [
+            180,
+            0,
+            4
+          ],
+          "positionX": 146.38050000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            182,
+            0,
+            4
+          ],
+          "endTime": [
+            182,
+            0,
+            4
+          ],
+          "positionX": 403.35300000000007,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            184,
+            0,
+            4
+          ],
+          "endTime": [
+            184,
+            0,
+            4
+          ],
+          "positionX": 382.752,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            186,
+            0,
+            4
+          ],
+          "endTime": [
+            187,
+            2,
+            4
+          ],
+          "positionX": -107.19000000000004,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            188,
+            0,
+            4
+          ],
+          "endTime": [
+            188,
+            0,
+            4
+          ],
+          "positionX": -44.38800000000003,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            190,
+            0,
+            4
+          ],
+          "endTime": [
+            190,
+            0,
+            4
+          ],
+          "positionX": -106.58250000000002,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 1,
+          "startTime": [
+            192,
+            0,
+            4
+          ],
+          "endTime": [
+            192,
+            0,
+            4
+          ],
+          "positionX": 28.903500000000054,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 2,
+          "startTime": [
+            194,
+            0,
+            4
+          ],
+          "endTime": [
+            195,
+            3,
+            4
+          ],
+          "positionX": -361.152,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 3,
+          "startTime": [
+            196,
+            0,
+            4
+          ],
+          "endTime": [
+            196,
+            0,
+            4
+          ],
+          "positionX": -288.09,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        },
+        {
+          "type": 4,
+          "startTime": [
+            198,
+            0,
+            4
+          ],
+          "endTime": [
+            198,
+            0,
+            4
+          ],
+          "positionX": -23.503499999999974,
+          "above": 1,
+          "alpha": 255,
+          "isFake": 0,
+          "size": 1.0,
+          "speed": 1.0,
+          "visibleTime": 999.0,
+          "yOffset": 0.0
+        }
+      ],
+      "eventLayers": [
+        {
+          "moveXEvents": [
+            {
+              "startTime": [
+                0,
+                0,
+                1
+              ],
+              "endTime": [
+                202,
+                0,
+                4
+              ],
+              "start": 0.0,
+              "end": 0.0,
+              "linkgroup": 0,
+              "easingType": 1,
+              "easingLeft": 0.0,
+              "easingRight": 1.0,
+              "bezier": 0,
+              "bezierPoints": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "moveYEvents": [
+            {
+              "startTime": [
+                0,
+                0,
+                1
+              ],
+              "endTime": [
+                202,
+                0,
+                4
+              ],
+              "start": -330.0,
+              "end": -330.0,
+              "linkgroup": 0,
+              "easingType": 1,
+              "easingLeft": 0.0,
+              "easingRight": 1.0,
+              "bezier": 0,
+              "bezierPoints": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "rotateEvents": [
+            {
+              "startTime": [
+                0,
+                0,
+                1
+              ],
+              "endTime": [
+                202,
+                0,
+                4
+              ],
+              "start": 0.0,
+              "end": 0.0,
+              "linkgroup": 0,
+              "easingType": 1,
+              "easingLeft": 0.0,
+              "easingRight": 1.0,
+              "bezier": 0,
+              "bezierPoints": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "alphaEvents": [
+            {
+              "startTime": [
+                0,
+                0,
+                1
+              ],
+              "endTime": [
+                202,
+                0,
+                4
+              ],
+              "start": 255,
+              "end": 255,
+              "linkgroup": 0,
+              "easingType": 1,
+              "easingLeft": 0.0,
+              "easingRight": 1.0,
+              "bezier": 0,
+              "bezierPoints": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "speedEvents": [
+            {
+              "startTime": [
+                0,
+                0,
+                1
+              ],
+              "endTime": [
+                202,
+                0,
+                4
+              ],
+              "start": 1.0,
+              "end": 1.0,
+              "linkgroup": 0
+            }
+          ]
+        }
+      ],
+      "extended": {}
+    }
+  ]
+}

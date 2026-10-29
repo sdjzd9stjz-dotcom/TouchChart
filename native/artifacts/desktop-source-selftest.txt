@@ -1,0 +1,25 @@
+PASS native Tk window, Canvas, configuration controls; no browser process
+PASS Hold jitter stays Hold in single/chain modes; intentional curves and configurable Flick/Hold/Drag thresholds work
+PASS live sensitivity snapshots each press, preserves existing notes, rejects invalid values and survives clear
+PASS embedded server reachable over real HTTP
+PASS mobile browser page and root redirect served by the native application
+PASS native LCM(16,24)=48 and BPM segment editor
+PASS bundled FFmpeg PCM decoding and real Windows MCI playback/pause
+PASS native audio analysis: 120 -> 180 -> 90 BPM at 0/12/20 seconds
+PASS native mouse callback -> recorded Tap -> stop
+PASS five-finger real HTTP input, multi 5 and duplicate-batch protection
+PASS native preview index, selected-note delete and undo
+PASS live fall-speed slider changes export speed without altering notes, BPM or recording transport; marks unsaved
+PASS native RPE export and complete five-file .pez with valid CRC
+PASS native Phichain project export through installed real converter
+PASS 2x fall speed survives complete PEZ and real Phichain conversion
+PASS primary export creates a complete Phira .pez, with EOCD, CRC, audio and background
+PASS existing RPE JSON plus selected music converts to a complete Phira package
+PASS raw JSON, truncated EOCD and wrong extensions rejected; interrupted export leaves no partial package
+PASS missing music is explained; attaching music later preserves recorded notes
+PASS Canvas speed scales all four note types; slow horizon beyond 5s and crossing Hold remain visible
+PASS speed bounds reject malformed values; reset restores 1x and clearing retains chosen speed
+PASS browser and APK session isolation, shared recording and independent reset
+PASS signed legacy touch IDs stay distinct; invalid and unsafe IDs rejected without mutation
+NATIVE DESKTOP SELFTEST PASSED (23/23)
+Elapsed seconds: 2.605

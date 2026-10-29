@@ -1,0 +1,8 @@
+PASS native server root opens the mobile page and synchronizes without external assets
+PASS five native browser touch points create five Tap notes and multi 5 in the desktop recorder
+PASS browser and APK-protocol inputs coexist in one exportable recording
+PASS browser offline detection, automatic resynchronization and resumed recording
+PASS signed browser pointer IDs map to five distinct stable positive contact IDs
+PASS recycled pointer IDs, cancellation and background release use the correct contact IDs
+PASS no uncaught browser JavaScript exceptions
+NATIVE MOBILE BROWSER ACCEPTANCE PASSED (7/7)

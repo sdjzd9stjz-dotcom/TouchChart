@@ -1,0 +1,19 @@
+[
+  {
+    "package": "platforms;android-35",
+    "url": "https://dl.google.com/android/repository/platform-35_r02.zip",
+    "size": "64273788",
+    "sha1": "0bb560a90a7a2cbd0dd8348224d518b638fe7949"
+  },
+  {
+    "package": "build-tools;35.0.0",
+    "url": "https://dl.google.com/android/repository/build-tools_r35_windows.zip",
+    "size": "59878107",
+    "sha1": "af059bb67cf7786f45ee0db85e2d24985df1b4b6"
+  },
+  {
+    "package": "jdk",
+    "url": "https://download.visualstudio.microsoft.com/download/pr/c334da97-1c11-44ba-93ac-b056c6ca5ec4/3d94837dbd8905c1e3c3cddf8f7d3531/microsoft-jdk-21.0.13.0.2-windows-x64.zip",
+    "sha256": "c5706a9cf482ef1a0622a86eea5b13d557b07f04554572af061e2d02b58c0f99"
+  }
+]

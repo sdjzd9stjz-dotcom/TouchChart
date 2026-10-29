@@ -1,0 +1,11 @@
+PASS default desktop port
+PASS explicit server address
+PASS invalid address rejected
+PASS midpoint clock synchronization
+PASS coordinates clamped
+PASS real Java to Python HTTP sync
+PASS five-finger batch accepted
+PASS retry uses same batch without duplication
+PASS native transport produces multi 5
+PASS native transport produces exportable RPE
+ANDROID JAVA TRANSPORT SELFTEST PASSED (10/10)

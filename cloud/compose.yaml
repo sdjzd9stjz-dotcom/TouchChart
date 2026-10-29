@@ -1,0 +1,25 @@
+services:
+  relay:
+    build: .
+    restart: unless-stopped
+    read_only: true
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+    mem_limit: 512m
+    cpus: 2
+    pids_limit: 160
+  https:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+volumes:
+  caddy_data:
+  caddy_config:

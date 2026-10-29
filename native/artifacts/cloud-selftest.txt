@@ -1,0 +1,9 @@
+PASS one mobile per PC, one room per mobile; competing devices rejected
+PASS copied token with wrong device and mobile control/owner access rejected
+PASS concurrent PC bridges receive only their own 12/17 notes; retries create no duplicates
+PASS refresh releases held fingers and replaces the previous touch page
+PASS disconnect revokes old mobile credential without affecting other room
+PASS browser page uses fragment invitation and authenticated requests; assets embedded
+CLOUD SELFTEST PASSED (6/6)
+
+EXIT CODE: 0

@@ -1,0 +1,5 @@
+PASS two real Edge mobile pages pair with independent PC rooms
+PASS actual 5-finger/3-finger browser touches reach only their paired PC queues
+PASS third browser device visibly rejected from occupied PC room
+PASS invitation removed from address after successful pairing
+CLOUD BROWSER SELFTEST PASSED (4/4)

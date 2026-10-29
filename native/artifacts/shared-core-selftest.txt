@@ -1,0 +1,19 @@
+test_bom_and_encoding (__main__.Acceptance.test_bom_and_encoding) ... ok
+test_chart_schema (__main__.Acceptance.test_chart_schema) ... ok
+test_classify (__main__.Acceptance.test_classify) ... ok
+test_fixture_regression (__main__.Acceptance.test_fixture_regression) ... ok
+test_http_lifecycle (__main__.Acceptance.test_http_lifecycle) ... ok
+test_multitouch (__main__.Acceptance.test_multitouch) ... ok
+test_no_external_deps (__main__.Acceptance.test_no_external_deps) ... ok
+test_position_x (__main__.Acceptance.test_position_x) ... ok
+test_quantize (__main__.Acceptance.test_quantize) ... ok
+test_rpe_parseable (__main__.Acceptance.test_rpe_parseable) ... ok
+test_slots (__main__.Acceptance.test_slots) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.838s
+
+OK
+ALL TESTS PASSED (11/11)
+
+EXIT CODE: 0
