@@ -1,17 +1,12 @@
 {
-  "tag": "v0.3.0",
-  "title": "Windows 原生初版与 Android",
-  "note": "由留存原生软件目录重新压缩，未重新编译。包内原始 EXE 自检记录为 12/12。",
+  "tag": "v0.4.0",
+  "title": "触控 ID 修复版",
+  "note": "原始交付 ZIP；修复手机触控 ID 兼容问题。",
   "assets": [
     {
-      "name": "TouchChart-Windows-Initial.zip",
-      "bytes": 51792707,
-      "sha256": "e4f4dfdc8ec1f7bfe998dd0deb4b52500d9781df8116e0abe4a312700014763a"
-    },
-    {
-      "name": "TouchChart-Android.apk",
-      "bytes": 25046,
-      "sha256": "f7e925d105d7bdecdd5f5188fce59d259a0dbdb3722d432cb7d0f87802928f03"
+      "name": "TouchChart-Windows-IDFix.zip",
+      "bytes": 51792920,
+      "sha256": "dfb49b69a6289af418354f2fdb20f4d48a77d45dfaa1f2be6258ba493a051b1a"
     }
   ]
 }
