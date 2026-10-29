@@ -1,12 +1,12 @@
 {
-  "tag": "v0.4.0",
-  "title": "触控 ID 修复版",
-  "note": "原始交付 ZIP；修复手机触控 ID 兼容问题。",
+  "tag": "v0.5.0",
+  "title": "Phira 完整谱包导出版",
+  "note": "原始交付 ZIP；主导出完整 PEZ，包含音乐、背景及 ZIP 完整性检查。",
   "assets": [
     {
-      "name": "TouchChart-Windows-IDFix.zip",
-      "bytes": 51792920,
-      "sha256": "dfb49b69a6289af418354f2fdb20f4d48a77d45dfaa1f2be6258ba493a051b1a"
+      "name": "TouchChart-Windows-PhiraExport.zip",
+      "bytes": 52923036,
+      "sha256": "6cb2b88e58fd37189dd785a38356864dc8e2cb1cac99de47ec496c3e959f1be4"
     }
   ]
 }
