@@ -1,5 +1,7 @@
 # TouchChart 手打谱机
 
+[下载最终版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v2026.10.29) · [按顺序查看历史版本](VERSIONS.md)
+
 用手机五指敲击录制 Tap / Hold / Flick / Drag，导出包含音乐、背景和谱面的 Phira `.pez`，也可导出 RPE JSON 与 Phichain 项目。
 
 ## 下载与使用
