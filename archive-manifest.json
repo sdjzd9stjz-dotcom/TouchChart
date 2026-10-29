@@ -1,12 +1,17 @@
 {
-  "tag": "v0.2.0",
-  "title": "网页增强版留存快照",
-  "note": "包括变速 BPM、高密度及兼容改进。此包在开发后期更新过，属于网页分支的留存快照，不宣称是原生版之前的逐字源代码。",
+  "tag": "v0.3.0",
+  "title": "Windows 原生初版与 Android",
+  "note": "由留存原生软件目录重新压缩，未重新编译。包内原始 EXE 自检记录为 12/12。",
   "assets": [
     {
-      "name": "touchchart-delivery.zip",
-      "bytes": 5864808,
-      "sha256": "9b59663d5f021c6deff0b93c2a486707359c257d66f47deaa0d17049a9414af5"
+      "name": "TouchChart-Windows-Initial.zip",
+      "bytes": 51792707,
+      "sha256": "e4f4dfdc8ec1f7bfe998dd0deb4b52500d9781df8116e0abe4a312700014763a"
+    },
+    {
+      "name": "TouchChart-Android.apk",
+      "bytes": 25046,
+      "sha256": "f7e925d105d7bdecdd5f5188fce59d259a0dbdb3722d432cb7d0f87802928f03"
     }
   ]
 }
