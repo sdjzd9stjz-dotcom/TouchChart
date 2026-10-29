@@ -19,6 +19,7 @@ native/recovery/
 native/artifacts/*
 !native/artifacts/desktop-exe-selftest.txt
 !native/artifacts/desktop-source-selftest.txt
+!native/artifacts/web-speed-selftest.txt
 !native/artifacts/cloud-selftest.txt
 !native/artifacts/cloud-browser-selftest.txt
 !native/artifacts/shared-core-selftest.txt

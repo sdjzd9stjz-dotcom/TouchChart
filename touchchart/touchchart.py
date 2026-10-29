@@ -23,6 +23,24 @@ from urllib.parse import parse_qs, urlsplit
 DEFAULTS = dict(bpm=150, offsetMs=0, division=16, lanes=0, comp=0)
 EXTRA_DEFAULTS = dict(dragMode="single", noteMode="auto", bpmSegments=[])
 GESTURE_DEFAULTS = dict(holdMs=200, dragDistance=.05, flickDistance=.10, flickMs=300)
+# Phira v0.8.2: parse/rpe.rs SPEED_RATIO = 10/45/HEIGHT_RATIO;
+# core/note.rs divides by aspect ratio, camera restores it, screen scales by H/2.
+# Thus RPE speed s moves s/(9*0.83175) viewport heights per second.
+# Keep a stable 1x baseline: 180 px/s in a 300 px-high reference preview.
+PHIRA_HEIGHT_RATIO = .83175
+SCROLL_HEIGHTS_PER_SECOND = .6
+RPE_SPEED_AT_1X = SCROLL_HEIGHTS_PER_SECOND * 9 * PHIRA_HEIGHT_RATIO
+JUDGE_LINE_Y = -330.0
+JUDGE_LINE_FRACTION = .5 - JUDGE_LINE_Y / 900
+
+
+def rpe_scroll_speed(multiplier):
+    validate_scroll_speed(multiplier)
+    return multiplier * RPE_SPEED_AT_1X
+
+
+def preview_scroll_speed(multiplier, height):
+    return rpe_scroll_speed(multiplier) / (9 * PHIRA_HEIGHT_RATIO) * height
 
 def validate_gestures(settings):
     if not isinstance(settings, dict) or set(settings) != set(GESTURE_DEFAULTS):
@@ -239,9 +257,9 @@ def build_chart(notes, bpm, division, meta):
                 judgeLineList=[dict(Group=0, Name="Untitled", Texture="line.png", anchor=[.5, .5],
                                     bpmfactor=1.0, father=-1, isCover=1, zOrder=0,
                                     numOfNotes=len(normalized), notes=normalized,
-                                    eventLayers=[dict(moveXEvents=event(0.0), moveYEvents=event(-330.0),
+                                    eventLayers=[dict(moveXEvents=event(0.0), moveYEvents=event(JUDGE_LINE_Y),
                                                       rotateEvents=event(0.0), alphaEvents=event(255),
-                                                      speedEvents=event(scroll_speed, True))], extended={})])
+                                                      speedEvents=event(rpe_scroll_speed(scroll_speed), True))], extended={})])
 
 
 class FingerTracker:
@@ -476,7 +494,7 @@ class Recorder:
 
     def state(self):
         return dict(slots=self.tracker.snapshot(), messages=list(self.messages), notes=self.notes,
-                    stats=self.stats(), config=self.config, gestures=self.gestures,
+                    stats=self.stats(), config=self.config, gestures=self.gestures, scrollSpeed=self.meta.get("scrollSpeed",1.0),
                     recording=self.recording, paused=self.paused, sending=self.sending, next=self.seq,
                     transport=self.transport)
 
@@ -788,7 +806,7 @@ DESKTOP_HTML = r"""<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta
 <div id="errorBanner" role="alert" hidden style="margin:12px 24px;padding:12px;border:1px solid #ff4d6d;border-radius:8px;color:#ff4d6d"><span id="errorText"></span><button onclick="this.parentElement.hidden=true" style="margin-left:12px">关闭提示</button></div><main><aside class="panel"><div class="badge">INPUT MONITOR</div><h2>手势分析器</h2><canvas id="zones" width="320" height="320" aria-label="触控区域 3×3 区域"></canvas><div class="section-label">触控区域 3×3 区域</div><table><thead><tr><th>槽位</th><th>状态</th><th>x</th><th>y</th></tr></thead><tbody id="slots"></tbody></table><div class="section-label">最近消息 · 实时手势</div><pre id="messages">等待触控输入…</pre><div class="row controls"><button id="sending">暂停发送</button><button id="reset">重置</button><button id="port">端口 8787</button><button id="exit">退出</button></div><a href="/selftest" target="_blank">运行自动自检 ↗</a></aside>
 <section class="panel"><div class="row" style="justify-content:space-between"><div><div class="badge">CHART WORKSPACE</div><h2>打谱台</h2></div><span id="timer" class="mono muted">00:00.000</span></div>
 <div id="drop"><label for="file">＋ 载入音频 <small>点击选择或拖入 MP3 / WAV / OGG / M4A</small></label><input id="file" type="file" accept=".mp3,.wav,.ogg,.m4a"><small id="audioInfo">未载入音频 · 也可以直接录制节奏</small><audio id="audio" controls preload="auto"></audio></div>
-<div class="row controls"><label class="control">BPM<input id="bpm" type="number" min="30" max="600" value="150"></label><label class="control">偏移 ms<input id="offsetMs" type="number" min="-2000" max="2000" value="0"></label><label class="control">补偿 ms<input id="comp" type="number" min="-200" max="200" value="0"></label><label class="control">量化<select id="division"><option value="4">1/4</option><option value="8">1/8</option><option value="16" selected>1/16</option><option value="24">1/24</option><option value="32">1/32</option><option value="48">1/48</option><option value="64">1/64</option><option value="96">1/96</option><option value="128">1/128</option><option value="192">1/192</option><option value="384">1/384</option><option value="768">1/768</option></select></label><label class="control">轨道吸附<select id="lanes"><option value="0">无</option><option>4</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label><label class="control">下落 px/ms<input id="scrollSpeed" type="number" value="0.35" min="0.05" max="2" step="0.05"></label></div>
+<div class="row controls"><label class="control">BPM<input id="bpm" type="number" min="30" max="600" value="150"></label><label class="control">偏移 ms<input id="offsetMs" type="number" min="-2000" max="2000" value="0"></label><label class="control">补偿 ms<input id="comp" type="number" min="-200" max="200" value="0"></label><label class="control">量化<select id="division"><option value="4">1/4</option><option value="8">1/8</option><option value="16" selected>1/16</option><option value="24">1/24</option><option value="32">1/32</option><option value="48">1/48</option><option value="64">1/64</option><option value="96">1/96</option><option value="128">1/128</option><option value="192">1/192</option><option value="384">1/384</option><option value="768">1/768</option></select></label><label class="control">轨道吸附<select id="lanes"><option value="0">无</option><option>4</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label><label class="control">Phira 同步下落 ×<input id="scrollSpeed" type="number" value="1" min="0.25" max="5" step="any"></label></div>
 <div class="row controls"><label class="control">手势模式<select id="noteMode"><option value="auto">自动识别</option><option value="tap">固定 Tap</option><option value="hold">固定 Hold</option><option value="flick">固定 Flick</option><option value="drag">固定 Drag</option></select></label><label class="control">滑动处理<select id="dragMode"><option value="single">单音符</option><option value="chain">沿轨迹成串</option></select></label><button id="densePreset">高密度预设</button><label class="control">复合细分<input id="gridMix" value="16,24" style="width:100px"></label><button id="gridLcm">LCM 合并网格</button></div>
 <details id="tempoPanel" style="margin:12px 0"><summary>变速 BPM · 本地音频分析与分段编辑</summary><p class="muted">每行填写「时间秒,BPM」，第一行从 0 秒开始。自动分析是候选结果，请检查半速/倍速与变化点。</p><div class="row"><button id="analyze">分析音频 BPM</button><button id="halfTempo">候选 ×0.5</button><button id="doubleTempo">候选 ×2</button><button id="applyTempo">应用分段</button><button id="constantTempo">恒定 BPM</button></div><textarea id="tempoText" rows="5" style="width:100%;margin-top:10px;background:#10141c;color:#e6ebf2;border:1px solid #2a3140;border-radius:6px;padding:10px" placeholder="0,150&#10;30,180"></textarea><p id="tempoStatus" class="muted">当前：恒定 BPM；分析仅在本机进行。</p></details>
 <div class="row controls"><button id="record" class="primary">● 开始录制</button><button id="preview">播放试听</button><button id="clear">清空</button><button id="undo">撤销上一个</button><button id="export">导出 chart.json ↗</button></div>
@@ -817,7 +835,7 @@ function visibleNotes(time,future){const found=new Set(longNotes.filter(n=>n._en
 
 function secondsOf(n,end=false){const c=state.config||settings();return beatTime(beat(n[end?'endTime':'startTime'])+timeBeat(c.offsetMs/1000,c),c);}
 function currentTime(){return playing?(objectURL?audio.currentTime:Math.max(0,(performance.now()-playOrigin)/1000)):position;}
-async function refresh(){state=await api('/api/state');cursor=state.next;rebuildIndex();dirty=true;renderText();return state;}
+async function refresh(){state=await api('/api/state');cursor=state.next;if(document.activeElement!==$('scrollSpeed'))$('scrollSpeed').value=String(state.scrollSpeed??1);rebuildIndex();dirty=true;renderText();return state;}
 function renderText(){
  const s=state.stats||{},msg=`音符 ${s.total||0} · Tap ${s.tap||0} / Hold ${s.hold||0} / Flick ${s.flick||0} / Drag ${s.drag||0} · 最大多押 ${s.maxMulti||0} · 时长 ${(s.duration||0).toFixed(1)}s`;
  $('stats').textContent=msg;$('record').textContent=state.recording?'■ 停止录制':'● 开始录制';$('record').classList.toggle('recording',state.recording);$('sending').textContent=state.sending?'暂停发送':'恢复发送';
@@ -831,7 +849,7 @@ function updateAnalyzer(){const signature=JSON.stringify(state.slots);if(signatu
 function drawZones(now){zctx.clearRect(0,0,320,320);zctx.font='12px ui-monospace';for(let i=0;i<9;i++){const x=i%3*104+4,y=Math.floor(i/3)*104+4;zctx.fillStyle='#10151d';zctx.fillRect(x,y,100,100);zctx.strokeStyle=flashes[i]>now?'#35e0d0':'#2a3140';zctx.strokeRect(x+.5,y+.5,100,100);zctx.fillStyle='#66758b';zctx.fillText(String(i+1),x+10,y+20)}for(const s of state.slots){if(s.x==null||s.status==='离开')continue;const x=12+s.x*296,y=12+s.y*296;zctx.beginPath();zctx.arc(x,y,16,0,Math.PI*2);zctx.fillStyle='#35e0d033';zctx.fill();zctx.strokeStyle='#35e0d0';zctx.stroke();zctx.textAlign='center';zctx.fillStyle='#b5fff7';zctx.fillText(String(s.slot),x,y+4);zctx.textAlign='left'}}
 function drawChart(time, notes=state.notes){
  const W=chart.clientWidth||900,H=chart.clientHeight||440,dpr=devicePixelRatio||1;if(chart.width!==Math.round(W*dpr)||chart.height!==Math.round(H*dpr)){chart.width=Math.round(W*dpr);chart.height=Math.round(H*dpr)}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#12141a';ctx.fillRect(0,0,W,H);
- const c=state.config||settings(),total=Math.max(4,(timeBeat(state.stats.duration||0,c)-timeBeat(c.offsetMs/1000,c))),line=H-60,speed=Math.max(.05,Math.min(2,Number($('scrollSpeed').value)||.35));
+ const c=state.config||settings(),total=Math.max(4,(timeBeat(state.stats.duration||0,c)-timeBeat(c.offsetMs/1000,c))),line=H*__LINE_FRACTION__,speed=H*__SCROLL_RATE__*Math.max(.25,Math.min(5,Number($('scrollSpeed').value)||1))/1000;
  const visibleBeats=Math.min(64,Math.max(16,total));for(let i=0;i<=visibleBeats;i++){const x=40+i/visibleBeats*(W-80);ctx.strokeStyle=i%4===0?'#3a4250':'#2a2f3a';ctx.lineWidth=i%4===0?2:1;ctx.beginPath();ctx.moveTo(x,18);ctx.lineTo(x,line);ctx.stroke()}
  for(const n of notes===state.notes?visibleNotes(time,H/(speed*1000)+.1):notes){const start=n._start??secondsOf(n),end=n._end??secondsOf(n,true),x=40+(n.positionX/1350+.5)*(W-80),y=line-(start-time)*1000*speed,tail=line-(end-time)*1000*speed;if((y< -30&&tail< -30)||(tail>H+30))continue;ctx.fillStyle=colors[n.type];if(n.type===2){const len=Math.max(20,(end-start)*1000*speed);ctx.globalAlpha=.7;ctx.fillRect(x-9,y-len,18,len);ctx.globalAlpha=1;ctx.fillStyle='#b3e7ff';ctx.fillRect(x-13,y-5,26,10)}else if(n.type===3){ctx.beginPath();ctx.moveTo(x,y-12);ctx.lineTo(x+17,y+7);ctx.lineTo(x,y);ctx.lineTo(x-17,y+7);ctx.closePath();ctx.fill()}else ctx.fillRect(x-13,y-(n.type===4?3:5),26,n.type===4?6:10)}
  ctx.strokeStyle='#ffd23f';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(40,line);ctx.lineTo(W-40,line);ctx.stroke();const redX=40+Math.min(1,Math.max(0,(timeBeat(time,c)-timeBeat(c.offsetMs/1000,c))/Math.max(total,4)))*(W-80);ctx.strokeStyle='#ff4d6d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(redX,18);ctx.lineTo(redX,H-22);ctx.stroke();
@@ -862,9 +880,11 @@ $('undo').onclick=protect(async()=>{await api('/api/notes/delete',{});await refr
 $('clear').onclick=protect(async()=>{if(confirm('清空所有音符？')){if(state.recording)await toggleRecord();await api('/api/control',{action:'clear'});await refresh()}});
 $('reset').onclick=protect(async()=>{if(state.recording)await toggleRecord();if(playing)await setPlaying(false);await api('/api/reset',{});position=0;await refresh()});
 $('sending').onclick=protect(async()=>{await api('/api/control',{action:'sending',enabled:!state.sending});await refresh()});
-$('export').onclick=protect(async()=>{if(state.recording)await toggleRecord();if(!state.notes.length){alert('尚无音符，请先录制');return}const response=await fetch('/api/chart');if(!response.ok)throw Error((await response.json()).error);const url=URL.createObjectURL(await response.blob()),a=document.createElement('a');a.href=url;a.download='chart.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+$('export').onclick=protect(async()=>{await saveScrollSpeed();if(state.recording)await toggleRecord();if(!state.notes.length){alert('尚无音符，请先录制');return}const response=await fetch('/api/chart');if(!response.ok)throw Error((await response.json()).error);const url=URL.createObjectURL(await response.blob()),a=document.createElement('a');a.href=url;a.download='chart.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 $('playhead').oninput=protect(async e=>{position=Number(e.target.value);playOrigin=performance.now()-position*1000;if(objectURL){internalAudio=true;audio.currentTime=position;internalAudio=false}await api('/api/control',{action:'transport',position,playing});dirty=true});
 $('scrollSpeed').oninput=()=>dirty=true;
+async function saveScrollSpeed(){const input=$('scrollSpeed');if(!input.checkValidity()||!input.value)throw Error('下落速度必须为 0.25～5');await api('/api/control',{action:'scrollSpeed',value:Number(input.value)});dirty=true}
+$('scrollSpeed').onchange=protect(saveScrollSpeed);
 $('copy').onclick=protect(async()=>{if(navigator.clipboard)await navigator.clipboard.writeText($('phone').href);else{const input=document.createElement('textarea');input.value=$('phone').href;document.body.append(input);input.select();if(!document.execCommand('copy'))throw Error('复制失败，请手动复制手机地址');input.remove()}$('copy').textContent='已复制'});
 $('port').textContent='端口 '+location.port;$('port').onclick=()=>alert('当前端口 '+location.port+'；修改端口请以 python touchchart.py --port 端口号 重启。');
 $('exit').onclick=protect(async()=>{if(state.recording)await toggleRecord();await api('/api/control',{action:'exit'});setConnection('服务已退出','#8b97a8')});
@@ -917,6 +937,8 @@ window.addEventListener('resize',paint);window.addEventListener('offline',()=>ne
 async function heartbeat(){while(true){await sleep(2000);if(synced)try{await api('/api/sync',undefined,AbortSignal.timeout(3000))}catch(err){networkError(err)}}}
 paint();wakeScreen();connect();heartbeat();
 </script></html>"""
+
+DESKTOP_HTML = DESKTOP_HTML.replace("__LINE_FRACTION__", str(JUDGE_LINE_FRACTION)).replace("__SCROLL_RATE__", str(SCROLL_HEIGHTS_PER_SECOND))
 
 SELFTEST_HTML = r"""<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>TouchChart 自动自检</title><style>""" + CSS + r"""body{padding:28px}pre{white-space:pre-wrap;line-height:1.7}iframe{width:1200px;height:900px;border:0;position:absolute;left:-1300px}</style><h1>TouchChart 自动自检</h1><p class="muted">独立临时服务运行 11 项测试；不会清空当前谱面。浏览器测量真实预览渲染函数。</p><button id="run">运行全部自检</button><pre id="result">等待运行</pre><iframe id="desktop" src="/"></iframe><script>""" + COMMON_JS + r"""
 window.selftestResult=null;

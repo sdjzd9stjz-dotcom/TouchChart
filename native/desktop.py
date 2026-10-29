@@ -142,7 +142,7 @@ class Desktop:
         self.bridge=None
         self.last_move = 0; self.dragging = False; self.buckets = {}; self.index_key = None
         self.saved_seq = None; self.candidate = None; self.index_count = 0
-        self.root.title('TouchChart Desktop · 下落速度控制版')
+        self.root.title('TouchChart Desktop · Phira 速度同步版')
         self.root.geometry('1260x850'); self.root.minsize(1060, 740)
         self.root.configure(bg='#101521')
         style = ttk.Style(root); style.theme_use('clam')
@@ -213,7 +213,7 @@ class Desktop:
             ttk.Button(row,text=text,command=self.guard(lambda f=factor:self.scale_tempo(f))).pack(side='left',expand=True,fill='x')
         ttk.Label(left, text='留空使用恒定 BPM。自动分析为候选，\n开始前请试听校正半速/倍速与变化点。', foreground='#99b0c8', padding=(0,8)).pack(anchor='w')
         speed_row = ttk.Frame(right); speed_row.pack(fill='x', pady=(0, 8))
-        ttk.Label(speed_row, text='音符下落速度').pack(side='left')
+        ttk.Label(speed_row, text='Phira 同步下落速度').pack(side='left')
         self.speed_text = tk.StringVar(value='1')
         self.speed_entry = ttk.Entry(speed_row, textvariable=self.speed_text, width=8)
         self.speed_entry.pack(side='left')
@@ -477,7 +477,7 @@ class Desktop:
             p=Path(parent)/time.strftime('TouchChart-%Y%m%d-%H%M%S')
             self.job(lambda:self.package_to(p,True),lambda p:self.status.set('原生项目已保存 '+str(p)))
     def draw(self,position):
-        c=self.canvas;w=max(1,c.winfo_width());h=max(1,c.winfo_height());line=h*.8657
+        c=self.canvas;w=max(1,c.winfo_width());h=max(1,c.winfo_height());line=h*core.JUDGE_LINE_FRACTION
         c.delete('all')
         for x in range(1,8):c.create_line(w*x/8,0,w*x/8,h,fill='#1c2940')
         c.create_line(0,line,w,line,fill='#f3d885',width=3)
@@ -493,7 +493,7 @@ class Desktop:
                     for bucket in range(math.floor(a),math.floor(b)+1):self.buckets.setdefault(bucket,[]).append((n,a,b))
                 self.index_key=key;self.index_count=len(r.notes)
             slots=r.tracker.snapshot();stats=r.stats();recording=r.recording
-            speed=180*r.meta.get('scrollSpeed',1.0)
+            speed=core.preview_scroll_speed(r.meta.get('scrollSpeed',1.0),h)
             last=r.notes[-30:];signature=tuple(n['id'] for n in last)
         seen=set()
         for bucket in range(math.floor(position)-1,math.ceil(position+(line+20)/speed)+1):

@@ -18,11 +18,13 @@
 
 预览区上方新增「音符下落速度」滑块：范围 **0.25×～5×**，连续无级调节，支持输入任意合法小数后回车，默认 1×，可点「恢复 1×」。录制中、播放中和已有音符时均可调整，立即影响 Tap / Hold / Flick / Drag 的预览。慢速下会按可见时间范围读取音符，包含超过 5 秒后的音符和跨越当前时间的长按。
 
-这是整张谱面的统一下落速度；调整时不会录制成分段变速事件。**导出的 Phira `.pez`、RPE JSON 和 Phichain 项目均保存当前倍率**，通过标准 RPE 判定线 `speedEvents` 实现。BPM、音乐播放速度、音符判定时间、长按时长和输入补偿保持不变。预览保留原版 1× 的视觉基准；游戏实际像素速度还取决于客户端视口及设置。
+这是整张谱面的统一下落速度；调整时不会录制成分段变速事件。**导出的 Phira `.pez`、RPE JSON 和 Phichain 项目均保存当前倍率**，通过标准 RPE 判定线 `speedEvents` 实现。BPM、音乐播放速度、音符判定时间、长按时长和输入补偿保持不变。新版按 Phira v0.8.2 的解析、音符渲染和相机投影公式换算：**1× 每秒下降游玩区域高度的 60%，2× 为 120%，0.5× 为 30%**。预览随画布高度缩放；同一倍率在不同窗口/屏幕上的相对位置和到达判定线的时间一致。1× 从顶部到判定线约 1.444 秒（不含音符图形边缘）。
+
+修复前直接把倍率当作 RPE 速度，导致 Phira 中明显偏慢。新版 `speedEvents = 倍率 × 4.49145`，1× 的导出速度约为旧版 4.49 倍。既有谱包不会自动变化，需要用新版重新导出；「已有 JSON 转谱包」仍保留原 JSON 的速度事件。Phira 请使用正常播放速度并关闭 Night Club 等改变游玩速度的模组；屏幕高度指实际游玩区域，不含黑边。
 
 调速后视为有未保存更改，需要重新导出；清空音符保留当前倍率，重新启动默认 1×。文件打包期间暂时锁定滑块。手机网页和 APK 继续负责输入，无需更新 APK。已有 JSON 转谱包菜单保留原 JSON 中的速度。
 
-实现依据：[Phira v0.8.2 RPE 解析器](https://github.com/TeamFlos/phira/blob/v0.8.2/prpr/src/parse/rpe.rs)。新增回归覆盖调速时序不变、四种音符预览、慢速可见范围、越界输入、复位与导出后的真实 Phichain 转换；不将转换通过等同于 Phira 实机试玩。
+实现依据：[Phira v0.8.2 RPE 解析器](https://github.com/TeamFlos/phira/blob/v0.8.2/prpr/src/parse/rpe.rs)。换算依据还包括 [音符渲染](https://github.com/TeamFlos/phira/blob/v0.8.2/prpr/src/core/note.rs) 与 [相机投影](https://github.com/TeamFlos/phira/blob/v0.8.2/prpr/src/core/resource.rs)。新增回归覆盖 4 种画布尺寸、6 个倍率的 148 次可见音符位置比对（独立公式参照，非 Phira GUI 实测）、调速时序不变、四种音符预览、慢速可见范围、越界输入、复位与导出后的真实 Phichain 转换；不将转换通过等同于 Phira 实机试玩。
 
 `Could not find EOCD` 表示输入文件缺少可识别的 ZIP 结束记录，尚未进入谱面解析。单独 JSON 或被截断的 ZIP 都能触发这一类问题；没有取得用户失败文件，不能断言是哪一种。**不要把 JSON 改名为 .pez/.zip，这不会把它变成谱包。** 也不要在 Phira 中选择 Windows 软件安装 ZIP。
 
@@ -42,7 +44,7 @@ Windows x64；不需要用户安装 Python、Node 或 Java。安卓最低 Androi
 
 旧版服务错误地要求触控 ID 非负，而网页直接发送浏览器的 pointerId。已用负数 ID 复现同样的 400 错误；尚未抓取用户实体手机的原始请求，因此不把复现样例称为该手机的实际数据。新版网页把每次按压映射成独立内部编号，保留按下/移动/抬起/取消的一致性；服务也接受旧网页的合法有符号整数 ID，并继续拒绝空值、布尔值、小数及超出安全范围的数值。编号不会取绝对值，避免正负两个手指被合并。依据：[W3C Pointer Events 的 pointerId 定义](https://www.w3.org/TR/pointerevents/#dom-pointerevent-pointerid)。
 
-更新时先导出当前谱面并退出旧软件，再将新版 ZIP 解压到新目录运行；当前窗口标题为「下落速度控制版」，包含此前的 Phira 谱包导出和触控 ID 修复。手机重新打开或刷新该窗口显示的网页地址。当前运行中的旧进程不会因下载或解压自动更新；APK 无需更新。
+更新时先导出当前谱面并退出旧软件，再将新版 ZIP 解压到新目录运行；当前窗口标题为「Phira 速度同步版」，包含此前的 Phira 谱包导出和触控 ID 修复。手机重新打开或刷新该窗口显示的网页地址。当前运行中的旧进程不会因下载或解压自动更新；APK 无需更新。
 
 ## 功能
 
@@ -60,7 +62,7 @@ BPM 分段文本每行 `音频秒数,BPM`，第一行从 0 秒开始；留空表
 
 ## 测试证据与边界
 
-- 当前打包 EXE 自检 23/23，包含下落速度、默认 Phira 导出和中断写入防护；此前 Edge 手机模拟验收 7/7 覆盖五点触摸、正负 ID、编号重用、取消、后台释放、混用和重连。原始输出为 `artifacts/native-mobile-browser-output.txt` 和 `desktop-portable-selftest.txt`。这不等于所有实体手机浏览器都已测过。
+- 当前打包 EXE 自检 24/24，包含下落速度、默认 Phira 导出和中断写入防护；此前 Edge 手机模拟验收 7/7 覆盖五点触摸、正负 ID、编号重用、取消、后台释放、混用和重连。原始输出为 `artifacts/native-mobile-browser-output.txt` 和 `desktop-portable-selftest.txt`。这不等于所有实体手机浏览器都已测过。
 - `artifacts/desktop-exe-selftest.txt`：实际打包 EXE 的独立自检，包括原生控件、真实 HTTP、LCM、变速音频解码分析、Windows MCI 播放、鼠标回调、五指协议、删除、RPE/PEZ、真实 Phichain 转换。
 - `artifacts/android-transport-selftest.txt`：APK 使用的同一份 Java Wire 类，在真实 JVM 中向录制服务发送五指批次并验证重试去重、五押及导出。
 - `artifacts/android-build.txt`、`apk-signature.txt`、`apk-manifest.txt`：实际编译、DEX、对齐、v2/v3 签名验证与清单。

@@ -18,8 +18,9 @@ PASS existing RPE JSON plus selected music converts to a complete Phira package
 PASS raw JSON, truncated EOCD and wrong extensions rejected; interrupted export leaves no partial package
 PASS missing music is explained; attaching music later preserves recorded notes
 PASS Canvas speed scales all four note types; slow horizon beyond 5s and crossing Hold remain visible
+PASS Phira v0.8.2 formula parity: 148 visible notes, four viewport sizes, six multipliers, BPM change; max error 0.000000000px (formula check, not Phira GUI)
 PASS speed bounds reject malformed values; reset restores 1x and clearing retains chosen speed
 PASS browser and APK session isolation, shared recording and independent reset
 PASS signed legacy touch IDs stay distinct; invalid and unsafe IDs rejected without mutation
-NATIVE DESKTOP SELFTEST PASSED (23/23)
-Elapsed seconds: 3.754
+NATIVE DESKTOP SELFTEST PASSED (24/24)
+Elapsed seconds: 3.619

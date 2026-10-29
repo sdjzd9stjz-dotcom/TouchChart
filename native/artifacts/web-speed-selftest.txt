@@ -1,0 +1,12 @@
+PASS desktop startup, synchronization and inline assets
+PASS real mouse events: Tap / Hold / Flick / Drag, recording and stop
+PASS Ctrl+E downloads real chart.json with four notes
+PASS Ctrl+Z undo and individual note deletion
+PASS clear confirmation and empty-chart export rejection
+PASS web fall speed matches exported Phira geometry at five continuous multipliers; refresh preserves selection
+PASS five native touch points, five slots, five notes and multi 5
+PASS phone offline detection and automatic resynchronization
+PASS WAV loading/playback, forced Hold settlement, pause, seek, resume and song metadata
+PASS /selftest: 11/11; 1000 notes, 120 frames, mean=0.348ms p95=0.600ms max=0.800ms (<4ms)
+PASS no uncaught JavaScript exceptions
+BROWSER ACCEPTANCE PASSED (11/11)

@@ -50,7 +50,7 @@ try{
  await desktop.send('Input.dispatchKeyEvent',{type:'keyDown',key:'z',code:'KeyZ',modifiers:2});await desktop.send('Input.dispatchKeyEvent',{type:'keyUp',key:'z',code:'KeyZ',modifiers:2});await desktop.wait('state.notes.length===3');
  await desktop.js('document.querySelector(".note button").click()');await desktop.wait('state.notes.length===2');
  report('PASS Ctrl+Z undo and individual note deletion');
- await desktop.js('document.getElementById("clear").click()');await desktop.wait('state.notes.length===0');assert.ok(desktop.dialogs.some(d=>d.type==='confirm'));await desktop.js('document.getElementById("export").click()');assert.ok(desktop.dialogs.some(d=>d.type==='alert'));report('PASS clear confirmation and empty-chart export rejection');
+ await desktop.js('document.getElementById("clear").click()');await desktop.wait('state.notes.length===0');assert.ok(desktop.dialogs.some(d=>d.type==='confirm'));await desktop.js('document.getElementById("export").click()');for(let i=0;i<100&&!desktop.dialogs.some(d=>d.type==='alert');i++)await sleep(20);assert.ok(desktop.dialogs.some(d=>d.type==='alert'));report('PASS clear confirmation and empty-chart export rejection');
  await request('/api/reset',{});await desktop.js('touchchart.refresh()');
  const touch=await page('/touch',412,850,true);await touch.wait('synced && document.getElementById("status").textContent.includes("已连接")');
  await desktop.js('document.getElementById("record").click()');await desktop.wait('state.recording');
@@ -60,6 +60,16 @@ try{
  assert.equal(await touch.js('fingers.size'),5);await touch.screenshot('mobile-five-fingers.png');
  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
  await desktop.wait('state.notes.length===5');await desktop.js('document.getElementById("record").click()');await desktop.wait('!state.recording');
+ for(const factor of [.25,1,1.23456789,2,5]){
+  await desktop.js(`document.getElementById('scrollSpeed').value=${factor};saveScrollSpeed()`);
+  const exported=await request('/api/chart');
+  assert.ok(Math.abs(exported.judgeLineList[0].eventLayers[0].speedEvents[0].start-4.49145*factor)<1e-9);
+  await desktop.js('refresh()');assert.equal(await desktop.js('Number(document.getElementById("scrollSpeed").value)'),factor);
+  const drawn=await desktop.js(`(()=>{const old=ctx.fillRect,heads=[];ctx.fillRect=function(x,y,w,h){if(w===26&&h===10)heads.push(y+5);return old.call(this,x,y,w,h)};try{drawChart(0,[{type:1,positionX:0,_start:.1,_end:.1}]);return {head:heads[0],height:chart.clientHeight}}finally{ctx.fillRect=old}})()`);
+  assert.ok(Math.abs(drawn.head/drawn.height-(.5+330/900-.1*.6*factor))<1e-9);
+ }
+ await desktop.js("document.getElementById('scrollSpeed').value=1;saveScrollSpeed()");
+ report('PASS web fall speed matches exported Phira geometry at five continuous multipliers; refresh preserves selection');
  await request('/api/reset',{});await desktop.js('touchchart.refresh()');await desktop.js('document.getElementById("record").click()');await desktop.wait('state.recording');
  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:points});await sleep(35);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await desktop.wait('state.notes.length===5');assert.equal((await request('/api/state')).stats.maxMulti,5);
  await desktop.js('document.getElementById("record").click()');await desktop.wait('!state.recording');
@@ -87,7 +97,7 @@ try{
  await writeFile(path.join(artifacts,'browser-selftest.json'),JSON.stringify(results,null,2));await selftest.screenshot('browser-selftest.png');
  report(`PASS /selftest: 11/11; 1000 notes, 120 frames, mean=${results.meanMs.toFixed(3)}ms p95=${results.p95Ms.toFixed(3)}ms max=${results.maxMs.toFixed(3)}ms (<4ms)`);
  for(const c of clients)assert.deepEqual(c.errors,[],'Uncaught browser exception');report('PASS no uncaught JavaScript exceptions');
- report('BROWSER ACCEPTANCE PASSED (10/10)');
+ report('BROWSER ACCEPTANCE PASSED (11/11)');
 }catch(error){report('FAIL '+error.stack);for(let i=0;i<clients.length;i++){try{report('DIAGNOSTIC '+i+' '+JSON.stringify(await clients[i].js('({url:location.href,text:document.body.innerText,errors:typeof audio!=="undefined"?{src:audio.src,error:audio.error?.message,duration:audio.duration,ready:audio.readyState}:null})')));await clients[i].screenshot('failure-'+i+'.png')}catch{}}process.exitCode=1}
 finally{
  await writeFile(path.join(artifacts,'browser-output.txt'),output.join('\n')+'\n');

@@ -1,5 +1,6 @@
 """Run real native widgets, audio, HTTP input, exports and conversion in isolation."""
 import json
+import math
 from pathlib import Path
 import tempfile
 import time
@@ -105,7 +106,7 @@ def run(output):
         changed=app.recorder.chart()
         assert changed['BPMList']==baseline['BPMList']
         assert changed['judgeLineList'][0]['notes']==baseline['judgeLineList'][0]['notes']
-        assert changed['judgeLineList'][0]['eventLayers'][0]['speedEvents'][0]['start']==2
+        assert math.isclose(changed['judgeLineList'][0]['eventLayers'][0]['speedEvents'][0]['start'],8.9829)
         app.toggle_record();anchor=app.recorder.anchor
         app.set_scroll_speed(3)
         assert app.recorder.recording and app.playing and app.recorder.anchor==anchor
@@ -125,9 +126,9 @@ def run(output):
             passed('native Phichain project export through installed real converter')
             with zipfile.ZipFile(package) as archive:
                 packed=json.loads(archive.read('chart.json'))
-            assert packed['judgeLineList'][0]['eventLayers'][0]['speedEvents'][0]['start']==2
+            assert math.isclose(packed['judgeLineList'][0]['eventLayers'][0]['speedEvents'][0]['start'],8.9829)
             speed_events=[e for e in native['lines'][0]['events'] if e['kind']=='speed']
-            assert speed_events and all(e['value']['transition']['start']==2 and e['value']['transition']['end']==2 for e in speed_events),speed_events
+            assert speed_events and all(math.isclose(e['value']['transition']['start'],8.9829,rel_tol=1e-6) and math.isclose(e['value']['transition']['end'],8.9829,rel_tol=1e-6) for e in speed_events),speed_events
             passed('2x fall speed survives complete PEZ and real Phichain conversion')
             default=Path(folder)/'default-export.pez'
             finished=[]
@@ -178,7 +179,7 @@ def run(output):
         original=app.server.recorder
         try:
             r=core.Recorder();r.start(dict(bpm=120,division=16,bpmSegments=[dict(time=0,bpm=120),dict(time=12,bpm=180)],startEpoch=1000))
-            for i,(kind,a,b) in enumerate([(1,1,1),(2,1,2),(3,1,1),(4,1,1),(1,8,8),(2,0,20)]):
+            for i,(kind,a,b) in enumerate([(1,.5,.5),(2,.5,1),(3,.5,.5),(4,.5,.5),(1,5.5,5.5),(2,0,20)]):
                 r.notes.append(dict(id=i+1,type=kind,startTime=core.beat_triple(core.seconds_to_beat(a,120,r.config['bpmSegments']),4),endTime=core.beat_triple(core.seconds_to_beat(b,120,r.config['bpmSegments']),4),positionX=(i-2)*180))
             r.recount();app.server.recorder=r;app.index_key=None
             coords={}
@@ -186,18 +187,48 @@ def run(output):
                 for factor in (.25,1,2,5):
                     app.set_scroll_speed(factor);app.draw(0)
                     heads=app.canvas.find_withtag('note-head')
-                    if factor==.25:assert app.canvas.find_withtag('note-5'),'Slow preview dropped visible note at 8s'
+                    if factor==.25:assert app.canvas.find_withtag('note-5'),'Slow preview dropped visible note at 5.5s'
                     if factor in (1,2):
                         coords[factor]=[app.canvas.coords(app.canvas.find_withtag(f'note-{i}')[0]) for i in range(1,5)]
                     if factor==5:assert not app.canvas.find_withtag('note-1'),'Offscreen note was not culled'
                     app.draw(15)
                     assert app.canvas.find_withtag('note-6'),'Crossing Hold body vanished'
-                line=600*.8657
+                line=600*(.5+330/900)
                 for i in (0,2,3):
                     y1=(coords[1][i][1]+coords[1][i][3])/2;y2=(coords[2][i][1]+coords[2][i][3])/2
                     assert abs((line-y2)-2*(line-y1))<.001
                 assert abs((coords[2][1][3]-coords[2][1][1])-2*(coords[1][1][3]-coords[1][1][1]))<.001
             passed('Canvas speed scales all four note types; slow horizon beyond 5s and crossing Hold remain visible')
+            # Independent reference: Phira v0.8.2 RPE parser + note renderer + camera.
+            # Integrate exported speed in seconds, divide by aspect, project with camera.
+            samples=0;max_error=0
+            for w,h in [(920,290),(800,600),(1920,1080),(1080,1920)]:
+                with mock.patch.object(app.canvas,'winfo_width',return_value=w),mock.patch.object(app.canvas,'winfo_height',return_value=h):
+                    for factor in (.25,.5,1,1.23456789,2,5):
+                        app.set_scroll_speed(factor)
+                        chart=r.chart();layer=chart['judgeLineList'][0]['eventLayers'][0]
+                        speed_event=layer['speedEvents'][0]
+                        assert speed_event['start']==speed_event['end']
+                        assert math.isclose(speed_event['start'],4.49145*factor)
+                        phira_speed=speed_event['start']*(10/45/.83175)
+                        line=h*(.5-layer['moveYEvents'][0]['start']/900)
+                        # Four note heads, before and after BPM change (120 -> 180).
+                        for moment in (.4,12.125):
+                            app.draw(moment)
+                            for n in r.notes:
+                                a=core.note_seconds(core.beat_value(n['startTime']),120,0,r.config['bpmSegments'])
+                                b=core.note_seconds(core.beat_value(n['endTime']),120,0,r.config['bpmSegments'])
+                                shapes=app.canvas.find_withtag(f'note-{n["id"]}')
+                                if not shapes:continue
+                                head=app.canvas.coords(shapes[-1]);actual=(head[1]+head[3])/2
+                                expected=line-(a-moment)*phira_speed/(w/h)*(w/h)*h/2
+                                error=abs(actual-expected);max_error=max(max_error,error)
+                                assert error<1e-7,(w,h,factor,n,actual,expected)
+                                if n['type']==2:
+                                    body=app.canvas.coords(shapes[0])
+                                    assert math.isclose(body[1],line-(b-moment)*phira_speed*h/2,abs_tol=1e-7)
+                                samples+=1
+            passed(f'Phira v0.8.2 formula parity: {samples} visible notes, four viewport sizes, six multipliers, BPM change; max error {max_error:.9f}px (formula check, not Phira GUI)')
             for invalid in (0,-1,5.01,float('nan'),float('inf'),True,'2'):
                 try:core.build_chart(r.notes,120,16,dict(scrollSpeed=invalid));raise AssertionError('Invalid speed accepted')
                 except ValueError:pass
