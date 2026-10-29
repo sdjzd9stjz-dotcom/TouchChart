@@ -1,12 +1,12 @@
 {
-  "tag": "v0.6.0",
-  "title": "下落速度首轮实验构建",
-  "note": "由留存软件目录重新压缩，未重新编译。当时仍为 0.05 倍步进；此构建未完成 EXE 自检，不是后续无级调速最终版。",
+  "tag": "v0.7.0",
+  "title": "无级调速与互联网配对版",
+  "note": "原始交付 ZIP；原生电脑与手机浏览器独立配对，早于手势灵敏度最终版。",
   "assets": [
     {
-      "name": "TouchChart-Windows-ScrollSpeed-Experimental.zip",
-      "bytes": 52711401,
-      "sha256": "1e25f01d14bf2e038f671e8f42daf70ad61bb1d0ad06905f05096d06db2249ab"
+      "name": "TouchChart-Windows-Cloud.zip",
+      "bytes": 52721956,
+      "sha256": "10a0659761f94085cea53414c0b9f2199542cc5e9d089a7fb7da87211574c5c4"
     }
   ]
 }
