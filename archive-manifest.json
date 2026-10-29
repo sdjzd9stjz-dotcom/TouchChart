@@ -1,12 +1,12 @@
 {
-  "tag": "v0.1.0",
-  "title": "网页初版",
-  "note": "原始网页交付包，按原文件保存。",
+  "tag": "v0.2.0",
+  "title": "网页增强版留存快照",
+  "note": "包括变速 BPM、高密度及兼容改进。此包在开发后期更新过，属于网页分支的留存快照，不宣称是原生版之前的逐字源代码。",
   "assets": [
     {
-      "name": "touchchart-delivery-v1.zip",
-      "bytes": 202612,
-      "sha256": "c5fe7a03e949ebaa4fc9d32735474a9a6c6784a7b9974a86d5efaa49268fba0d"
+      "name": "touchchart-delivery.zip",
+      "bytes": 5864808,
+      "sha256": "9b59663d5f021c6deff0b93c2a486707359c257d66f47deaa0d17049a9414af5"
     }
   ]
 }
