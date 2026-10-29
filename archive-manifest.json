@@ -1,12 +1,12 @@
 {
-  "tag": "v0.5.0",
-  "title": "Phira 完整谱包导出版",
-  "note": "原始交付 ZIP；主导出完整 PEZ，包含音乐、背景及 ZIP 完整性检查。",
+  "tag": "v0.6.0",
+  "title": "下落速度首轮实验构建",
+  "note": "由留存软件目录重新压缩，未重新编译。当时仍为 0.05 倍步进；此构建未完成 EXE 自检，不是后续无级调速最终版。",
   "assets": [
     {
-      "name": "TouchChart-Windows-PhiraExport.zip",
-      "bytes": 52923036,
-      "sha256": "6cb2b88e58fd37189dd785a38356864dc8e2cb1cac99de47ec496c3e959f1be4"
+      "name": "TouchChart-Windows-ScrollSpeed-Experimental.zip",
+      "bytes": 52711401,
+      "sha256": "1e25f01d14bf2e038f671e8f42daf70ad61bb1d0ad06905f05096d06db2249ab"
     }
   ]
 }
