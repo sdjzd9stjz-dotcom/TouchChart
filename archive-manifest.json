@@ -1,0 +1,12 @@
+{
+  "tag": "v0.1.0",
+  "title": "网页初版",
+  "note": "原始网页交付包，按原文件保存。",
+  "assets": [
+    {
+      "name": "touchchart-delivery-v1.zip",
+      "bytes": 202612,
+      "sha256": "c5fe7a03e949ebaa4fc9d32735474a9a6c6784a7b9974a86d5efaa49268fba0d"
+    }
+  ]
+}
