@@ -1,6 +1,6 @@
 # TouchChart 手打谱机
 
-[下载最终版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v2026.10.29.1) · [按顺序查看历史版本](VERSIONS.md)
+[下载最终版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v2026.10.30) · [按顺序查看历史版本](VERSIONS.md)
 
 用手机五指敲击录制 Tap / Hold / Flick / Drag，导出包含音乐、背景和谱面的 Phira `.pez`，也可导出 RPE JSON 与 Phichain 项目。
 
@@ -14,6 +14,7 @@
 
 ## 功能
 
+- 轨道间距无级调节及实时参考线，已有吸附音符同步移动；默认按 BPM 半拍吸附，支持变 BPM。
 - 四类音符、五指多押、滑动成串、最高 1/768 细分与 64 轨吸附。
 - 变速 BPM 分段、音频 BPM 候选分析和复合量化网格。
 - 0.25×～5× 无级下落速度，支持小数输入并保存到谱面；预览和 Phira 导出按相同屏幕高度比例换算。
@@ -43,7 +44,7 @@ python native/test_cloud.py
 
 ## 已有验证与边界
 
-真实日志位于 [native/artifacts](native/artifacts)：Windows EXE 自检 24/24；云中继真实 HTTP 隔离测试 6/6；Edge 手机模拟触控测试 4/4；共享核心 11/11；网页完整回归（含 Phira 速度一致性）11/11。
+真实日志位于 [native/artifacts](native/artifacts)：Windows EXE 自检 26/26；云中继真实 HTTP 隔离测试 6/6；Edge 手机模拟触控测试 4/4；共享核心 11/11；网页完整回归（含 Phira 速度一致性）11/11。
 
 Phichain 转换和渲染已验证。Phira GUI、实体 Android 手机及实际公网部署尚未完成验收。BPM 分析是候选结果，需要试听校正。设备按浏览器凭据区分，换浏览器视为新设备；互联网延迟取决于网络。程序退出前应导出谱面。
 

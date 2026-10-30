@@ -19,6 +19,40 @@ def run(output):
         root=tk.Tk();root.withdraw();app=Desktop(root,0);root.update_idletasks()
         assert isinstance(app.canvas,tk.Canvas) and len(app.fields)==7
         passed('native Tk window, Canvas, configuration controls; no browser process')
+        app.fields['lanes'].set('4');app.set_half_snap();app.set_lane_span(.6)
+        with mock.patch.object(app.canvas,'winfo_width',return_value=1000),mock.patch.object(app.canvas,'winfo_height',return_value=600):
+            app.draw(0)
+            xs=[app.canvas.coords(i)[0] for i in app.canvas.find_withtag('lane-guide')]
+            assert all(math.isclose(a,b) for a,b in zip(xs,[200,400,600,800])) and len(xs)==4
+            assert len(app.canvas.find_withtag('beat-guide'))>2
+            app.set_lane_span(.33333333);app.draw(0)
+            xs=[app.canvas.coords(i)[0] for i in app.canvas.find_withtag('lane-guide')]
+            assert math.isclose(xs[1]-xs[0],111.11111)
+        app.set_lane_span(.6)
+        r=app.recorder
+        r.start(dict(app.config(),bpm=120,bpmSegments=[dict(time=0,bpm=120),dict(time=12,bpm=180),dict(time=20,bpm=90)],startEpoch=1000))
+        for i,seconds in enumerate((.26,12.17,20.32)):
+            r.feed(dict(k='down',f=i,x=.1,y=.5,t=1000+seconds*1000))
+            r.feed(dict(k='up',f=i,x=.1,y=.5,t=1050+seconds*1000))
+        r.stop(23000)
+        assert [core.beat_value(n['startTime']) for n in r.notes]==[.5,24.5,48.5]
+        assert all(math.isclose(n['positionX'],-405) for n in r.notes)
+        before=[n['startTime'][:] for n in r.notes]
+        app.saved_seq=tuple(n['id'] for n in r.notes);app.set_lane_span(.3)
+        assert all(math.isclose(n['positionX'],-202.5) for n in r.notes) and app.saved_seq is None
+        assert [n['startTime'] for n in r.notes]==before
+        app.set_lane_span(.6);assert all(math.isclose(n['positionX'],-405) for n in r.notes)
+        passed('continuous lane spacing redraws exact snap targets; existing snapped notes rescale reversibly and mark unsaved')
+        for seconds,expected in ((.26,.5),(12.17,24.5),(20.32,48.5)):
+            beat=core.quantize_beat(seconds,120,0,8,r.config['bpmSegments'])
+            assert beat==expected
+        for bad in (0,-1,1.01,float('nan'),float('inf'),True):
+            try:core.validate_config(dict(laneSpan=bad));raise AssertionError('invalid lane spacing accepted')
+            except ValueError:pass
+        assert core.position_x(0,4,.6)==-405
+        assert math.isclose(core.position_x(1,4,.6),405)
+        passed('half-beat snap follows 120/180/90 BPM changes (250/166.667/333.333 ms); invalid spacing rejected')
+        app.clear(False);app.fields['lanes'].set('0');app.fields['division'].set('16');app.set_lane_span(1)
         def gesture(settings,points,mode='auto',chain='single'):
             r=core.Recorder();r.gestures=dict(settings);r.start(dict(bpm=120,startEpoch=1000,noteMode=mode,dragMode=chain))
             for k,t,x in points:r.feed(dict(k=k,t=1000+t,f=1,x=x,y=.5))

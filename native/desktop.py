@@ -142,7 +142,7 @@ class Desktop:
         self.bridge=None
         self.last_move = 0; self.dragging = False; self.buckets = {}; self.index_key = None
         self.saved_seq = None; self.candidate = None; self.index_count = 0
-        self.root.title('TouchChart Desktop · Phira 速度同步版')
+        self.root.title('TouchChart Desktop · 轨道与半拍吸附版')
         self.root.geometry('1260x850'); self.root.minsize(1060, 740)
         self.root.configure(bg='#101521')
         style = ttk.Style(root); style.theme_use('clam')
@@ -190,7 +190,7 @@ class Desktop:
         right = ttk.Frame(body, padding=(12, 0, 0, 0)); right.pack(side='left', fill='both', expand=True)
         self.fields = {}; self.setting_widgets = []
         defaults = [('bpm','恒定 / 首段 BPM','150'),('offsetMs','谱面偏移 ms','0'),('comp','输入补偿 ms','0'),
-                    ('division','量化分母','16'),('lanes','轨道吸附（0=无）','0'),('noteMode','类型模式','auto'),('dragMode','滑动模式','single')]
+                    ('division','量化分母','8'),('lanes','轨道吸附（0=无）','0'),('noteMode','类型模式','auto'),('dragMode','滑动模式','single')]
         choices = {'division':['4','8','16','24','32','48','64','96','128','192','384','768'],
                    'lanes':['0','4','8','16','32','64'],'noteMode':['auto','tap','hold','flick','drag'],'dragMode':['single','chain']}
         for key, title, value in defaults:
@@ -212,6 +212,18 @@ class Desktop:
         for text, factor in [('候选 ×0.5',.5),('候选 ×2',2)]:
             ttk.Button(row,text=text,command=self.guard(lambda f=factor:self.scale_tempo(f))).pack(side='left',expand=True,fill='x')
         ttk.Label(left, text='留空使用恒定 BPM。自动分析为候选，\n开始前请试听校正半速/倍速与变化点。', foreground='#99b0c8', padding=(0,8)).pack(anchor='w')
+        snap_row=ttk.Frame(right);snap_row.pack(fill='x',pady=(0,4))
+        ttk.Label(snap_row,text='轨道间距比例').pack(side='left')
+        self.lane_span=tk.DoubleVar(value=1.0)
+        self.lane_text=tk.StringVar(value='100')
+        self.lane_entry=ttk.Entry(snap_row,textvariable=self.lane_text,width=9);self.lane_entry.pack(side='left')
+        self.lane_entry.bind('<Return>',self.guard(lambda e:self.set_lane_span(float(self.lane_text.get())/100)))
+        self.lane_entry.bind('<FocusOut>',self.guard(lambda e:self.set_lane_span(float(self.lane_text.get())/100)))
+        ttk.Label(snap_row,text='%').pack(side='left')
+        self.lane_scale=ttk.Scale(snap_row,from_=.01,to=1,variable=self.lane_span,command=self.set_lane_span)
+        self.lane_scale.pack(side='left',fill='x',expand=True,padx=8)
+        self.half_snap=ttk.Button(snap_row,text='BPM 半拍吸附',command=self.guard(self.set_half_snap));self.half_snap.pack(side='right')
+        self.snap_hint=ttk.Label(right,text='');self.snap_hint.pack(fill='x')
         speed_row = ttk.Frame(right); speed_row.pack(fill='x', pady=(0, 8))
         ttk.Label(speed_row, text='Phira 同步下落速度').pack(side='left')
         self.speed_text = tk.StringVar(value='1')
@@ -319,9 +331,26 @@ class Desktop:
         if not isinstance(event.widget,(tk.Text,ttk.Entry,ttk.Combobox,tk.Listbox)):self.guard(action)()
     def editable(self):
         if self.recorder.recording or self.recorder.notes:raise ValueError('请先导出并清空，避免改变已有音符时间')
+    def set_half_snap(self):
+        self.editable();self.fields['division'].set('8')
+    def set_lane_span(self,value):
+        value=float(value)
+        core.validate_config(dict(laneSpan=value))
+        with self.server.lock:
+            r=self.recorder
+            if r.recording or self.busy:
+                value=r.config.get('laneSpan',1.0)
+            elif r.notes:
+                old=r.config['laneSpan']
+                if value!=old and r.config['lanes']>1:
+                    for n in r.notes:n['positionX']*=value/old
+                    self.saved_seq=None;self.list_signature=None
+                r.config['laneSpan']=value
+            self.lane_span.set(value);self.lane_text.set(f'{value*100:.12g}')
     def config(self):
         result={k:(v.get() if k in ('noteMode','dragMode') else float(v.get()) if k in ('bpm','offsetMs','comp') else int(v.get())) for k,v in self.fields.items()}
         result['bpmSegments']=self.parse_tempo()
+        result['laneSpan']=self.lane_span.get()
         core.validate_config(result);return result
     def parse_tempo(self):
         result=[]
@@ -479,7 +508,21 @@ class Desktop:
     def draw(self,position):
         c=self.canvas;w=max(1,c.winfo_width());h=max(1,c.winfo_height());line=h*core.JUDGE_LINE_FRACTION
         c.delete('all')
-        for x in range(1,8):c.create_line(w*x/8,0,w*x/8,h,fill='#1c2940')
+        try:
+            cfg=self.recorder.config if self.recorder.notes or self.recorder.recording else self.config()
+        except (ValueError,tk.TclError):cfg=self.recorder.config
+        lanes=cfg['lanes'];span=cfg.get('laneSpan',1.0)
+        for x in core.lane_positions(lanes,span):c.create_line(w*x,0,w*x,h,fill='#446480',tags='lane-guide')
+        speed=core.preview_scroll_speed(self.recorder.meta.get('scrollSpeed',1.0),h)
+        first=core.seconds_to_beat(position,cfg['bpm'],cfg['bpmSegments'])-core.seconds_to_beat(cfg['offsetMs']/1000,cfg['bpm'],cfg['bpmSegments'])
+        last=core.seconds_to_beat(position+(line+20)/speed,cfg['bpm'],cfg['bpmSegments'])-core.seconds_to_beat(cfg['offsetMs']/1000,cfg['bpm'],cfg['bpmSegments'])
+        # Always show the requested half-beat reference; finer quantization remains selectable.
+        for tick in range(max(0,math.floor(first*2)),math.ceil(last*2)+1):
+            t=core.note_seconds(tick/2,cfg['bpm'],cfg['offsetMs'],cfg['bpmSegments'])
+            y=line-(t-position)*speed
+            c.create_line(0,y,w,y,fill='#344b63' if tick%2==0 else '#233345',dash=() if tick%2==0 else (3,4),tags='beat-guide')
+        spacing=f'相邻轨道 {span/(lanes-1)*100:.3f}% 宽度' if lanes>1 else '轨道吸附关闭'
+        self.snap_hint.configure(text=spacing+' · 横线每半拍；量化 1/'+str(cfg['division'])+('（半拍吸附）' if cfg['division']==8 else ''))
         c.create_line(0,line,w,line,fill='#f3d885',width=3)
         c.create_text(14,16,anchor='nw',text='TOUCH / 鼠标或手机输入',fill='#6c89a9',font=('Segoe UI',10))
         with self.server.lock:
@@ -514,6 +557,8 @@ class Desktop:
             self.list_signature=signature
         self.stats_label.configure(text=f"{'● 录制中  ' if recording else ''}{stats['total']} 音符 · Tap {stats['tap']} / Hold {stats['hold']} / Flick {stats['flick']} / Drag {stats['drag']}")
         locked=recording or stats['total']>0
+        for widget in (self.lane_entry,self.lane_scale):widget.configure(state='disabled' if recording or self.busy else 'normal')
+        self.half_snap.configure(state='disabled' if locked else 'normal')
         for widget,normal in self.setting_widgets:widget.configure(state='disabled' if locked else normal)
         self.tempo.configure(state='disabled' if locked else 'normal')
         self.speed_scale.configure(state='disabled' if self.busy else 'normal')

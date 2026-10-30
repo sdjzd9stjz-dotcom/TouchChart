@@ -1,4 +1,6 @@
 PASS native Tk window, Canvas, configuration controls; no browser process
+PASS continuous lane spacing redraws exact snap targets; existing snapped notes rescale reversibly and mark unsaved
+PASS half-beat snap follows 120/180/90 BPM changes (250/166.667/333.333 ms); invalid spacing rejected
 PASS Hold jitter stays Hold in single/chain modes; intentional curves and configurable Flick/Hold/Drag thresholds work
 PASS live sensitivity snapshots each press, preserves existing notes, rejects invalid values and survives clear
 PASS embedded server reachable over real HTTP
@@ -22,5 +24,5 @@ PASS Phira v0.8.2 formula parity: 148 visible notes, four viewport sizes, six mu
 PASS speed bounds reject malformed values; reset restores 1x and clearing retains chosen speed
 PASS browser and APK session isolation, shared recording and independent reset
 PASS signed legacy touch IDs stay distinct; invalid and unsafe IDs rejected without mutation
-NATIVE DESKTOP SELFTEST PASSED (24/24)
-Elapsed seconds: 3.619
+NATIVE DESKTOP SELFTEST PASSED (26/26)
+Elapsed seconds: 3.382

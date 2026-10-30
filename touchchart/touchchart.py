@@ -21,7 +21,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 DEFAULTS = dict(bpm=150, offsetMs=0, division=16, lanes=0, comp=0)
-EXTRA_DEFAULTS = dict(dragMode="single", noteMode="auto", bpmSegments=[])
+EXTRA_DEFAULTS = dict(dragMode="single", noteMode="auto", bpmSegments=[], laneSpan=1.0)
 GESTURE_DEFAULTS = dict(holdMs=200, dragDistance=.05, flickDistance=.10, flickMs=300)
 # Phira v0.8.2: parse/rpe.rs SPEED_RATIO = 10/45/HEIGHT_RATIO;
 # core/note.rs divides by aspect ratio, camera restores it, screen scales by H/2.
@@ -222,10 +222,15 @@ def beat_value(triple):
     return triple[0] + triple[1] / triple[2]
 
 
-def position_x(x, lanes=0):
+def lane_positions(lanes, span=1.0):
+    return [(.5 + (i / (lanes - 1) - .5) * span) for i in range(lanes)] if lanes > 1 else []
+
+
+def position_x(x, lanes=0, span=1.0):
     x = min(1, max(0, x))
     if lanes > 1:
-        x = round_half_up(x * (lanes - 1)) / (lanes - 1)
+        index = min(lanes-1, max(0, round_half_up(((x-.5)/span+.5)*(lanes-1))))
+        x = lane_positions(lanes, span)[index]
     return min(675, max(-675, (x - .5) * 1350))
 
 
@@ -471,7 +476,7 @@ class Recorder:
         self.note_seq += 1
         c = self.config
         note = dict(id=self.note_seq, type=NOTE_TYPES[kind], startTime=beat_triple(start, c["division"] // 4),
-                    endTime=beat_triple(end, c["division"] // 4), positionX=position_x(x, c["lanes"]))
+                    endTime=beat_triple(end, c["division"] // 4), positionX=position_x(x, c["lanes"], c['laneSpan']))
         self.notes.append(note)
         self.counts[kind] += 1
         self.duration = max(self.duration, note_seconds(end, c["bpm"], c["offsetMs"], c["bpmSegments"]))
@@ -509,6 +514,8 @@ def validate_scroll_speed(value):
 
 
 def validate_config(body):
+    if not finite_number(body.get('laneSpan',1.0)) or not .01 <= body.get('laneSpan',1.0) <= 1:
+        raise ValueError('轨道间距比例必须为 0.01～1')
     for k, low, high in (("bpm", 30, 600), ("offsetMs", -2000, 2000), ("comp", -200, 200)):
         v = body.get(k, DEFAULTS[k])
         if not finite_number(v) or not low <= v <= high:

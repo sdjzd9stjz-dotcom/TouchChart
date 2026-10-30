@@ -13,5 +13,6 @@
 | 7 | [v0.7.0 无级调速与互联网配对版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v0.7.0) | 原始交付 ZIP；原生电脑与手机浏览器独立配对，早于手势灵敏度最终版。 |
 | 8 | [v2026.10.29 手势灵敏度版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v2026.10.29) | 增加 Hold / Drag / Flick 灵敏度及长按防抖；EXE 自检 23/23。 |
 | 9 | [v2026.10.29.1 Phira 速度同步版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v2026.10.29.1) | 修复预览与 Phira 导出速度单位不一致；按游玩区域高度统一倍率，EXE 自检 24/24。 |
+| 10 | [v2026.10.30 轨道与半拍吸附版](https://github.com/sdjzd9stjz-dotcom/TouchChart/releases/tag/v2026.10.30) | 无级轨道间距、实时网格、BPM 半拍吸附；EXE 自检 26/26。 |
 
 v0.x 历史标签及 `codex/historical-releases` 分支仅存储归档说明和文件校验清单，不能作为各历史 EXE 的精确源代码。实际历史程序及可用源码见各 Release 的上传附件。最终版源码保留在默认分支，未修改其已有提交历史。

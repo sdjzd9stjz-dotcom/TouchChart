@@ -11,7 +11,7 @@ test_rpe_parseable (__main__.Acceptance.test_rpe_parseable) ... ok
 test_slots (__main__.Acceptance.test_slots) ... ok
 
 ----------------------------------------------------------------------
-Ran 11 tests in 1.142s
+Ran 11 tests in 1.066s
 
 OK
 ALL TESTS PASSED (11/11)
